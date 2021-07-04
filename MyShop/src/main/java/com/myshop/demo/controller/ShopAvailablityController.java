@@ -35,11 +35,19 @@ public class ShopAvailablityController {
 		
 	}
 	@GetMapping(value= "/getAllShopAvailablity")
-	public List<ShopAvailablity>getAllShopAvailablity(){
+	public HashMap<String,Object>getAllShopAvailablity(){
 		List<ShopAvailablity>shopdata=saSer.findAll();
-		if(shopdata!=null && shopdata.isEmpty());
-		return shopdata;
+	  HashMap<String,Object>map= new HashMap<>();
+		if (shopdata!=null) {
+			map.put("code", "200");
+			map.put("content", shopdata);
+		} else {
+			map.put("code", "201");
+			map.put("content", "noshopdata");
+			
+		
 	}
 
-	
+		return map;
+}
 }

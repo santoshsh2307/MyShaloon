@@ -36,9 +36,17 @@ public class ESORController {
 		
 	}
 	 @GetMapping(value ="/getAllEsor")
-	public List<EmployeeShopOwnerRelation>getAllEsor(){
+	public HashMap<String,Object>getAllEsor(){
      List<EmployeeShopOwnerRelation> esordata=esorSer.findAll();
-     if(esordata!= null && esordata.isEmpty());
-     return esordata;
+    HashMap<String,Object> map= new HashMap<>();
+    if (esordata!=null) {
+		map.put("code", "200");
+		map.put("content", esordata);
+	} else {
+		map.put("code", "201");
+		map.put("content", "nodata");
+		
+	}
+	return map;
 }
 }

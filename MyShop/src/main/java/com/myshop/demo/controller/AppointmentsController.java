@@ -38,10 +38,18 @@ public class AppointmentsController {
 	}
 	
   @GetMapping(value = "/getAllAppointment")
-  public  List<Appointments>getAllAppointment(){
+  public  HashMap<String, Object> getAllAppointment(){
 	  List<Appointments>appointmentdata=apSer.findAll();
-	  if(appointmentdata!= null && appointmentdata.isEmpty());
-	  return appointmentdata;
+	HashMap<String,Object> map= new HashMap<>();
+	if (appointmentdata!=null) {
+		map.put("code", "200");
+		map.put("content", appointmentdata);
+	} else {
+		map.put("code", "201");
+		map.put("content", "noappointmentdata");
+		
+	}
+	return map;
   }
 
 }

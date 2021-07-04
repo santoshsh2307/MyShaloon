@@ -38,9 +38,18 @@ public class ShopController {
 		
 	}
 	@GetMapping(value ="/getAllShopDetails")
-	public List<ShopDetails>getAllShopDetails(){
+	public HashMap<String,Object>getAllShopDetails(){
 	List<ShopDetails>shopdata=sSer.findAll();
-	if(shopdata!=null && shopdata.isEmpty());
-	return shopdata;
+	HashMap<String,Object>map=new HashMap<>();
+	if (shopdata!=null) {
+		map.put("code", "200");
+		map.put("content", shopdata);
+	} else {
+		map.put("code", "201");
+		map.put("content", "noshopdata");
+		
+	}
+	return map;
+
 	}
 }
