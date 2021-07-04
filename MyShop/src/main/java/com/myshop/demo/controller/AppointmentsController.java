@@ -1,6 +1,7 @@
 package com.myshop.demo.controller;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ public class AppointmentsController {
 	@Autowired
 	AppointmentService apSer;
 	
+	//this APi is to save / create new appointment
+	
 	@PostMapping(value = "/saveAppointment")
 	public HashMap<String, Object> saveAppointment(@RequestBody Appointments a) {
 		 Appointments data =apSer.saveAppointment(a);
@@ -32,6 +35,21 @@ public class AppointmentsController {
 				
 			}
 			return map;
+		
+	}
+	@GetMapping(value = "/getAppointById")
+	public HashMap<String, Object> getAppointById( Long id) {
+		Optional<Appointments> data = apSer.findAppointmentById(id);
+		HashMap<String, Object> map = new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "201");
+			
+		}
+		return map;
 		
 	}
 	

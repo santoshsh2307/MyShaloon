@@ -1,6 +1,7 @@
 package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -24,6 +25,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 		a.setStatus(true);
 		// TODO Auto-generated method stub
 		Appointments data = appRepo.save(a);
+		return data;
+	}
+
+	@Transactional
+	public Optional<Appointments> findAppointmentById(Long id) {
+		// TODO Auto-generated method stub
+		Optional<Appointments> data = appRepo.findById(id);
+		
 		return data;
 	}
 

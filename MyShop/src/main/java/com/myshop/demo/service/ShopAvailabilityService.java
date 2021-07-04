@@ -6,4 +6,6 @@ public interface ShopAvailabilityService {
 
 	ShopAvailablity saveShopAvailability(ShopAvailablity sa);
 
+	ShopAvailablity findShopAvailableById(Long id);
+
 }

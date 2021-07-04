@@ -8,4 +8,6 @@ import com.myshop.demo.entity.ShopAvailablity;
 @Repository
 public interface ShopAvailablityRepository extends JpaRepository<ShopAvailablity, Long>{
 
+
+
 }

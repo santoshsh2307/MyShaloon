@@ -1,6 +1,7 @@
 package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -25,6 +26,13 @@ public class UserServiceImpl implements UsersService {
 		Users data = uRepo.save(u);
 		
 		return data;
+	}
+
+	@Transactional
+	public Users findById(Long id) {
+		// TODO Auto-generated method stub
+		Optional<Users> data = uRepo.findById(id);
+		return data.get();
 	}
 
 }

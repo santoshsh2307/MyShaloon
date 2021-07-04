@@ -1,6 +1,7 @@
 package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -24,6 +25,13 @@ public class ESORServiceImpl implements ESORService {
 		
 		// TODO Auto-generated method stub
 		EmployeeShopOwnerRelation data = esorRepo.save(esor);
+		return data;
+	}
+
+	@Transactional
+	public Optional<EmployeeShopOwnerRelation> findESORById(Long id) {
+		// TODO Auto-generated method stub
+		Optional<EmployeeShopOwnerRelation> data = esorRepo.findById(id);
 		return data;
 	}
 
