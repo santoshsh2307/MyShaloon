@@ -2,6 +2,7 @@ package com.myshop.demo.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,5 +36,10 @@ public class UserController {
 		return map;
 		
 	}
-
+	@RequestMapping(value= "/getAllUsers")
+    public List<Users>getAllUsers(){
+	List<Users>userdata=uSer.findAll();
+	if(userdata!=null && userdata.isEmpty());
+	 return userdata;
+   }
 }

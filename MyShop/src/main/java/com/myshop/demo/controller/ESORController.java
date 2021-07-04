@@ -1,8 +1,10 @@
 package com.myshop.demo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,5 +35,10 @@ public class ESORController {
 		return map;
 		
 	}
-
+	 @GetMapping(value ="/getAllEsor")
+	public List<EmployeeShopOwnerRelation>getAllEsor(){
+     List<EmployeeShopOwnerRelation> esordata=esorSer.findAll();
+     if(esordata!= null && esordata.isEmpty());
+     return esordata;
+}
 }

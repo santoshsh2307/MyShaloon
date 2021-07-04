@@ -1,6 +1,7 @@
 package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -25,6 +26,13 @@ public class AppointmentServiceImpl implements AppointmentService {
 		// TODO Auto-generated method stub
 		Appointments data = appRepo.save(a);
 		return data;
+	}
+
+	@Transactional
+	public List<Appointments> findAll() {
+		// TODO Auto-generated method stub
+	
+		return appRepo.findAll();
 	}
 
 }

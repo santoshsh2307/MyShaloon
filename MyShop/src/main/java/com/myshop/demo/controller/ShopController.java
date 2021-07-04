@@ -1,8 +1,10 @@
 package com.myshop.demo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,5 +36,11 @@ public class ShopController {
 	
 		
 		
+	}
+	@GetMapping(value ="/getAllShopDetails")
+	public List<ShopDetails>getAllShopDetails(){
+	List<ShopDetails>shopdata=sSer.findAll();
+	if(shopdata!=null && shopdata.isEmpty());
+	return shopdata;
 	}
 }
