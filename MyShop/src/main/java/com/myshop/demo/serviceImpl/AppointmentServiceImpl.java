@@ -35,6 +35,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Optional<Appointments> data = appRepo.findById(id);
 		
 		return data;
+	}
 	public List<Appointments> findAll() {
 		// TODO Auto-generated method stub
 	

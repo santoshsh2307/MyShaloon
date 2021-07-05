@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -70,6 +71,20 @@ public class ShopAvailablityController {
 	}
 
 
+		return map;
+}
+	@PutMapping(value = "/updateShopAvailability")
+	public HashMap<String, Object> updateShopAvailability(ShopAvailablity sa) {
+		ShopAvailablity updatedata = saSer.saveShopAvailability(sa);
+		HashMap<String, Object> map = new HashMap<>();
+		if (updatedata!=null) {
+			map.put("code", "200");
+			map.put("content", updatedata);
+		} else {
+			map.put("code", "201");
+			map.put("content", "nodata");
+			
+		}
 		return map;
 }
 }

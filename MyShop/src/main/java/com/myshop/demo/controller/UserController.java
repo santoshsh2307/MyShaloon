@@ -128,6 +128,7 @@ public class UserController {
 			
 		}
 		return map;
+	}
 
 	@GetMapping(value= "/getAllUsers")
     public HashMap<String, Object> getAllUsers(){

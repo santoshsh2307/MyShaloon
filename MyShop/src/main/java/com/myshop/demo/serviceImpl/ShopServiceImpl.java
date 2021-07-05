@@ -34,6 +34,7 @@ public class ShopServiceImpl implements ShopService{
 		// TODO Auto-generated method stub
 		Optional<ShopDetails> data = sRepo.findById(id);
 		return data.get();
+	}
 	public List<ShopDetails> findAll() {
 		// TODO Auto-generated method stub
 		return sRepo.findAll();
