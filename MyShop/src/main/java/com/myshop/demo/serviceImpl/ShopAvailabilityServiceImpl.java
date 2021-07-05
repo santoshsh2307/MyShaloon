@@ -1,6 +1,7 @@
 package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -25,6 +26,13 @@ public class ShopAvailabilityServiceImpl implements ShopAvailabilityService {
 		ShopAvailablity data = saRepo.save(sa);
 		// TODO Auto-generated method stub
 		return data;
+	}
+
+	@Transactional
+	public List<ShopAvailablity> findAll() {
+		// TODO Auto-generated method stub
+
+		return saRepo.findAll() ;
 	}
 
 }
