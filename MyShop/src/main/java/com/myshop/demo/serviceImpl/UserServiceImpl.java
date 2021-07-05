@@ -35,4 +35,32 @@ public class UserServiceImpl implements UsersService {
 		return data.get();
 	}
 
+	@Transactional
+	public Users findByPhone(String phone) {
+		Users data = uRepo.findByPhone(phone);
+		// TODO Auto-generated method stub
+		return data;
+	}
+
+	@Transactional
+	public Users findUsersByUserName(String userName) {
+		// TODO Auto-generated method stub
+		Users data = uRepo.findByUserName(userName);
+		return data;
+	}
+
+	@Transactional
+	public Users getUserByPhoneNoAndPassword(String phone, String password) {
+		// TODO Auto-generated method stub
+		Users data = uRepo.findByPhoneAndPassword(phone,password);
+		return data;
+	}
+
+	@Transactional
+	public Users getUserByUserNameAndPassword(String userName, String password) {
+		// TODO Auto-generated method stub
+		Users data = uRepo.findByUserNameAndPassword(userName,password);
+		return data;
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,19 +23,28 @@ public class UserController {
 	
 	@PostMapping(value = "/saveUsers")
 	public HashMap<String, Object> saveUsers(@RequestBody Users u) {
-		u.setCreatedAt(new Date());
-		HashMap<String, Object> map = new HashMap<>();
-		Users data = uSer.saveUsers(u);
-		if (data!=null) {
-			map.put("code", "200");
-			map.put("content", data);
-		} else {
-			map.put("code", "201");
-			map.put("content", "201");
-			
-		}
-		return map;
 		
+		HashMap<String, Object> map = new HashMap<>();
+		Users phonePresent = uSer.findByPhone(u.getPhone());
+		  Users userPresent = uSer.findUsersByUserName(u.getUserName());
+		  if (phonePresent!=null&& userPresent!=null) {
+			map.put("code", "250");
+			map.put("content", "phone or userName already exist");
+		} else {
+			Users data = uSer.saveUsers(u);
+			if (data!=null) {
+				map.put("code", "200");
+				map.put("content", data);
+			} else {
+				map.put("code", "201");
+				map.put("content", "no data");
+				
+			}
+		}
+		
+		
+		return map;
+	
 	}
 	@GetMapping(value = "/getUserById")
 	public HashMap<String, Object> getUserById(Long id) {
@@ -52,5 +62,67 @@ public class UserController {
 		
 	}
 
-	// i am testing git here
+	@GetMapping(value = "/getUserByPhoneNo")
+	public HashMap<String, Object> getUserByPhoneNo(String phone) {
+		Users data = uSer.findByPhone(phone);
+		HashMap<String, Object> map = new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+			
+		}
+		return map;
+		
+	}
+	@GetMapping(value = "/getUserByUserName/{name}")
+	public HashMap<String, Object> getUserByUserName(@PathVariable ("name") String userName) {
+		 Users data = uSer.findUsersByUserName(userName);
+		 HashMap<String, Object> map = new HashMap<>();
+			if (data!=null) {
+				map.put("code", "200");
+				map.put("content", data);
+			} else {
+				map.put("code", "201");
+				map.put("content", "no data");
+				
+				
+			}
+			return map;
+		
+	}
+	@PostMapping(value = "/getUserByPhoneNoAndPassword")
+	public HashMap<String, Object> getUserByPhoneNoAndPassword(String phone, String password) {
+		Users data = uSer.getUserByPhoneNoAndPassword(phone,password);
+		HashMap<String, Object> map = new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+			
+		}
+		return map;
+	}
+	
+	@PostMapping(value = "/getUserByUserNameAndPassword")
+	public HashMap<String, Object> getUserByUserNameAndPassword(String userName, String password) {
+		Users data = uSer.getUserByUserNameAndPassword(userName,password);
+		HashMap<String, Object> map = new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+			
+		}
+		return map;
+	}
 }

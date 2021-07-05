@@ -8,4 +8,12 @@ public interface UsersService {
 
 	public Users findById(Long id);
 
+	public Users findByPhone(String phone);
+
+	public Users findUsersByUserName(String userName);
+
+	public Users getUserByPhoneNoAndPassword(String phone, String password);
+
+	public Users getUserByUserNameAndPassword(String userName, String password);
+
 }
