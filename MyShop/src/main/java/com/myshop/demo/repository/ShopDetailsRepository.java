@@ -8,4 +8,6 @@ import com.myshop.demo.entity.ShopDetails;
 @Repository
 public interface ShopDetailsRepository extends JpaRepository<ShopDetails, Long>{
 
+	ShopDetails findShopById(Long id);
+
 }

@@ -34,6 +34,27 @@ public class ShopAvailablityController {
 		return map;
 		
 	}
+
+	@GetMapping(value = "/getShopAvailableById")
+	public HashMap<String, Object> getShopAvailableById(Long id) {
+		ShopAvailablity data = saSer.findShopAvailableById(id);
+		HashMap<String, Object> map = new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "201");
+			
+		}
+		return map;
+		
+		
+		
+	}
+	
+	
+
 	@GetMapping(value= "/getAllShopAvailablity")
 	public HashMap<String,Object>getAllShopAvailablity(){
 		List<ShopAvailablity>shopdata=saSer.findAll();
@@ -47,6 +68,7 @@ public class ShopAvailablityController {
 			
 		
 	}
+
 
 		return map;
 }

@@ -1,6 +1,7 @@
 package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -29,6 +30,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Transactional
+	public Optional<Appointments> findAppointmentById(Long id) {
+		// TODO Auto-generated method stub
+		Optional<Appointments> data = appRepo.findById(id);
+		
+		return data;
 	public List<Appointments> findAll() {
 		// TODO Auto-generated method stub
 	

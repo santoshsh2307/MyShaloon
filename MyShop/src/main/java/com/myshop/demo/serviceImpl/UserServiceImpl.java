@@ -1,6 +1,7 @@
 package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -29,6 +30,38 @@ public class UserServiceImpl implements UsersService {
 	}
 
 	@Transactional
+	public Users findById(Long id) {
+		// TODO Auto-generated method stub
+		Optional<Users> data = uRepo.findById(id);
+		return data.get();
+	}
+
+	@Transactional
+	public Users findByPhone(String phone) {
+		Users data = uRepo.findByPhone(phone);
+		// TODO Auto-generated method stub
+		return data;
+	}
+
+	@Transactional
+	public Users findUsersByUserName(String userName) {
+		// TODO Auto-generated method stub
+		Users data = uRepo.findByUserName(userName);
+		return data;
+	}
+
+	@Transactional
+	public Users getUserByPhoneNoAndPassword(String phone, String password) {
+		// TODO Auto-generated method stub
+		Users data = uRepo.findByPhoneAndPassword(phone,password);
+		return data;
+	}
+
+	@Transactional
+	public Users getUserByUserNameAndPassword(String userName, String password) {
+		// TODO Auto-generated method stub
+		Users data = uRepo.findByUserNameAndPassword(userName,password);
+		return data;
 	public List<Users> findAll() {
 		// TODO Auto-generated method stub
 		return uRepo.findAll();

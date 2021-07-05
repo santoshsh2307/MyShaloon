@@ -9,6 +9,7 @@ public interface ShopService  {
 
 	ShopDetails saveShop(ShopDetails s);
 
+	ShopDetails findShopById(Long id);
 	List<ShopDetails> findAll();
 
 }
