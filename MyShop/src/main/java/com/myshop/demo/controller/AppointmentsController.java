@@ -35,7 +35,7 @@ public class AppointmentsController {
 				map.put("content", data);
 			} else {
 				map.put("code", "201");
-				map.put("content", "201");
+				map.put("content", "no data");
 				
 			}
 			return map;
@@ -50,7 +50,7 @@ public class AppointmentsController {
 			map.put("content", data);
 		} else {
 			map.put("code", "201");
-			map.put("content", "201");
+			map.put("content", "no data");
 			
 		}
 		return map;
@@ -66,7 +66,7 @@ public class AppointmentsController {
 		map.put("content", appointmentdata);
 	} else {
 		map.put("code", "201");
-		map.put("content", "noappointmentdata");
+		map.put("content", "no data");
 		
 	}
 	return map;
