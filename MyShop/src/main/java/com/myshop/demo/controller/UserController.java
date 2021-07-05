@@ -2,10 +2,13 @@ package com.myshop.demo.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,6 +64,7 @@ public class UserController {
 		return map;
 		
 	}
+
 
 	@GetMapping(value = "/getUserByPhoneNo")
 	public HashMap<String, Object> getUserByPhoneNo(String phone) {
@@ -124,5 +128,20 @@ public class UserController {
 			
 		}
 		return map;
+
+	@GetMapping(value= "/getAllUsers")
+    public HashMap<String, Object> getAllUsers(){
+	List<Users>userdata=uSer.findAll();
+	HashMap<String,Object>map=new HashMap<>();
+	if (userdata!=null) {
+		map.put("code", "200");
+		map.put("content", userdata);
+	} else {
+		map.put("code", "201");
+		map.put("content", "nodata");
+	}
+	
+      return map;
+
 	}
 }

@@ -2,6 +2,7 @@ package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -61,6 +62,9 @@ public class UserServiceImpl implements UsersService {
 		// TODO Auto-generated method stub
 		Users data = uRepo.findByUserNameAndPassword(userName,password);
 		return data;
+	public List<Users> findAll() {
+		// TODO Auto-generated method stub
+		return uRepo.findAll();
 	}
 
 }

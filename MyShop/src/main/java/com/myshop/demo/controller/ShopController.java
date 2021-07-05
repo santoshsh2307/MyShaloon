@@ -1,6 +1,7 @@
 package com.myshop.demo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class ShopController {
 		
 		
 	}
+
 	@GetMapping(value = "/getShopById")
 	public HashMap<String, Object> getShopById(Long id) {
 		ShopDetails data = sSer.findShopById(id);
@@ -52,4 +54,21 @@ public class ShopController {
 		
 		
 	}
+
+	@GetMapping(value ="/getAllShopDetails")
+	public HashMap<String,Object>getAllShopDetails(){
+	List<ShopDetails>shopdata=sSer.findAll();
+	HashMap<String,Object>map=new HashMap<>();
+	if (shopdata!=null) {
+		map.put("code", "200");
+		map.put("content", shopdata);
+	} else {
+		map.put("code", "201");
+		map.put("content", "noshopdata");
+		
+	}
+	return map;
+
+	}
+
 }

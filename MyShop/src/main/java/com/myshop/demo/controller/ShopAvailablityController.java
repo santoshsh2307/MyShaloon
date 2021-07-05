@@ -1,6 +1,7 @@
 package com.myshop.demo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,7 @@ public class ShopAvailablityController {
 		return map;
 		
 	}
+
 	@GetMapping(value = "/getShopAvailableById")
 	public HashMap<String, Object> getShopAvailableById(Long id) {
 		ShopAvailablity data = saSer.findShopAvailableById(id);
@@ -53,5 +55,21 @@ public class ShopAvailablityController {
 	
 	
 
-	
+	@GetMapping(value= "/getAllShopAvailablity")
+	public HashMap<String,Object>getAllShopAvailablity(){
+		List<ShopAvailablity>shopdata=saSer.findAll();
+	  HashMap<String,Object>map= new HashMap<>();
+		if (shopdata!=null) {
+			map.put("code", "200");
+			map.put("content", shopdata);
+		} else {
+			map.put("code", "201");
+			map.put("content", "noshopdata");
+			
+		
+	}
+
+
+		return map;
+}
 }

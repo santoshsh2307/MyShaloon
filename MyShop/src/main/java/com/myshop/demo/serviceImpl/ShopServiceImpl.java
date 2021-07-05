@@ -2,6 +2,7 @@ package com.myshop.demo.serviceImpl;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -33,6 +34,9 @@ public class ShopServiceImpl implements ShopService{
 		// TODO Auto-generated method stub
 		Optional<ShopDetails> data = sRepo.findById(id);
 		return data.get();
+	public List<ShopDetails> findAll() {
+		// TODO Auto-generated method stub
+		return sRepo.findAll();
 	}
 
 }

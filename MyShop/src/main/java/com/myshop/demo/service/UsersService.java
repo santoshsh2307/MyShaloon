@@ -1,5 +1,7 @@
 package com.myshop.demo.service;
 
+import java.util.List;
+
 import com.myshop.demo.entity.Users;
 
 public interface UsersService {
@@ -15,5 +17,6 @@ public interface UsersService {
 	public Users getUserByPhoneNoAndPassword(String phone, String password);
 
 	public Users getUserByUserNameAndPassword(String userName, String password);
+	public List<Users> findAll();
 
 }
