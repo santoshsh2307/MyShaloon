@@ -21,9 +21,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Transactional
 	public Appointments saveAppointment(Appointments a) {
-		//a.setCreatedDate(new Date());
-		//a.setBookingStatusId(9l);
-		//a.setStatus(true);
+		a.setCreatedDate(new Date());
+		a.setBookingStatusId(9l);
+		a.setStatus(true);
 		// TODO Auto-generated method stub
 		Appointments data = appRepo.save(a);
 		return data;
