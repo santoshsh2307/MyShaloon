@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,5 +71,18 @@ public class ShopController {
 	return map;
 
 	}
-
-}
+	@PutMapping(value = "/updateShop")
+	public HashMap<String, Object> updateShop(@RequestBody ShopDetails s) {
+		ShopDetails updatedata = sSer.saveShop(s);
+		HashMap<String, Object> map = new HashMap<>();
+		if (updatedata!=null) {
+			map.put("code", "200");
+			map.put("content", updatedata);
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+		}
+		return map;
+	
+}}
