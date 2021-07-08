@@ -44,11 +44,11 @@ public class AppointmentsController {
 	}
 	@GetMapping(value = "/getAppointById")
 	public HashMap<String, Object> getAppointById( Long id) {
-		Optional<Appointments> data = apSer.findAppointmentById(id);
+		Optional<Appointments> getdata = apSer.findAppointmentById(id);
 		HashMap<String, Object> map = new HashMap<>();
-		if (data!=null) {
+		if (getdata!=null) {
 			map.put("code", "200");
-			map.put("content", data);
+			map.put("content", getdata);
 		} else {
 			map.put("code", "201");
 			map.put("content", "no data");
