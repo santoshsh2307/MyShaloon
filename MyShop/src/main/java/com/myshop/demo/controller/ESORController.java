@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class ESORController {
 			map.put("content", data);
 		} else {
 			map.put("code", "201");
-			map.put("content", "201");
+			map.put("content", "no data");
 			
 		}
 		return map;
@@ -47,7 +48,7 @@ public class ESORController {
 				map.put("content", data);
 			} else {
 				map.put("code", "201");
-				map.put("content", "201");
+				map.put("content", "no data");
 				
 			}
 			return map;
@@ -64,10 +65,25 @@ public class ESORController {
 		map.put("content", esordata);
 	} else {
 		map.put("code", "201");
-		map.put("content", "nodata");
+		map.put("content", "no data");
 		
 	}
 	return map;
 
 }
+	 @GetMapping(value = "/getShopByEmpId/{id}")
+	 public HashMap<String, Object> getShopByEmpId(@PathVariable ("id")Long id) {
+		List<EmployeeShopOwnerRelation> data = esorSer.getShopByEmpId(id);
+		HashMap<String, Object> map = new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+			
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+		}
+		return map;
+	}
 }

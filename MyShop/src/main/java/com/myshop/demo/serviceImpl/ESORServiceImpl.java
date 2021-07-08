@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myshop.demo.entity.EmployeeShopOwnerRelation;
+import com.myshop.demo.entity.ShopDetails;
 import com.myshop.demo.repository.EmployeeShopOwnerRelationRepository;
 import com.myshop.demo.service.ESORService;
 
@@ -34,9 +35,17 @@ public class ESORServiceImpl implements ESORService {
 		// TODO Auto-generated method stub
 		Optional<EmployeeShopOwnerRelation> data = esorRepo.findById(id);
 		return data;
+	}
 	public List<EmployeeShopOwnerRelation> findAll() {
 		// TODO Auto-generated method stub
 		return esorRepo.findAll();
+	}
+
+	@Transactional
+	public List<EmployeeShopOwnerRelation> getShopByEmpId(Long id) {
+		// TODO Auto-generated method stub
+		 List<EmployeeShopOwnerRelation> data = esorRepo.findAllByEmpId(id);
+		return data;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.myshop.demo.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import java.util.Optional;
@@ -7,7 +8,9 @@ import java.util.Optional;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.joda.LocalDateParser;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,7 @@ public class AppointmentsController {
 	@Autowired
 	AppointmentService apSer;
 	
-	//this APi is to save / create new appointment
+	//this APi is to save / create new appointment 
 	
 	@PostMapping(value = "/saveAppointment")
 	public HashMap<String, Object> saveAppointment(@RequestBody Appointments a) {
@@ -72,4 +75,36 @@ public class AppointmentsController {
 	return map;
   }
 
+  @GetMapping(value = "/getAppByAppData/{date}")
+  public HashMap<String, Object> getAppByAppData(@PathVariable ("date") String addDate) {
+	  List<Appointments> data = apSer.findAppByAppDate(new Date(addDate));
+	  HashMap<String,Object> map= new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+		}
+		return map;
+	
+}
+  @GetMapping(value = "/getAppByUserId/{id}")
+  public HashMap<String, Object> getAppByUserId(@PathVariable("id") Long id) {
+	 Appointments data= apSer.findAppByUserId(id);
+	 HashMap<String,Object> map= new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+		}
+		return map;
+	
+	
+}
+  
 }

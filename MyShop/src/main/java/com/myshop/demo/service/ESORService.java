@@ -13,4 +13,6 @@ public interface ESORService {
 	Optional<EmployeeShopOwnerRelation> findESORById(Long id);
 	List<EmployeeShopOwnerRelation> findAll();
 
+	List<EmployeeShopOwnerRelation> getShopByEmpId(Long id);
+
 }

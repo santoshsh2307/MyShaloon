@@ -1,5 +1,6 @@
 package com.myshop.demo.entity;
 
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -16,7 +17,7 @@ public class Appointments {
 
 	private Long id;
 	private Long shopId;
-	private TimeZone appTime;
+	private LocalTime appTime;
 	private Date appDate;
 	private Date createdDate;
 	private Long bookingStatusId;
@@ -42,10 +43,10 @@ public class Appointments {
 	}
 	
 	@Column(name = "app_time")
-	public TimeZone getAppTime() {
+	public LocalTime getAppTime() {
 		return appTime;
 	}
-	public void setAppTime(TimeZone appTime) {
+	public void setAppTime(LocalTime appTime) {
 		this.appTime = appTime;
 	}
 	

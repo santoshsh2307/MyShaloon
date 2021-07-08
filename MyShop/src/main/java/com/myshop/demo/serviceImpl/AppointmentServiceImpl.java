@@ -21,9 +21,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Transactional
 	public Appointments saveAppointment(Appointments a) {
-		a.setCreatedDate(new Date());
-		a.setBookingStatusId(9l);
-		a.setStatus(true);
+		//a.setCreatedDate(new Date());
+		//a.setBookingStatusId(9l);
+		//a.setStatus(true);
 		// TODO Auto-generated method stub
 		Appointments data = appRepo.save(a);
 		return data;
@@ -35,10 +35,25 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Optional<Appointments> data = appRepo.findById(id);
 		
 		return data;
+	}
 	public List<Appointments> findAll() {
 		// TODO Auto-generated method stub
 	
 		return appRepo.findAll();
+	}
+
+	@Transactional
+	public List<Appointments> findAppByAppDate(Date appDate) {
+		List<Appointments> data = appRepo.findByAppDate(appDate);
+		// TODO Auto-generated method stub
+		return data;
+	}
+
+	@Transactional
+	public Appointments findAppByUserId(Long id) {
+		// TODO Auto-generated method stub
+		Appointments data = appRepo.findAppByUserId(id);
+		return data;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.myshop.demo.entity;
 
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -17,10 +18,13 @@ public class ShopAvailablity {
 
 	private Long id;
 	private Long shopId;
-	private TimeZone loginTime;
-	private TimeZone logoutTime;
+	private LocalTime loginTime;
+	private LocalTime logoutTime;
 	private Date createdDate;
+	private Date fromDate;
+	private Date toDate;
 	private Boolean status;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,18 +45,18 @@ public class ShopAvailablity {
 	}
 	
 	@Column(name = "login_time")
-	public TimeZone getLoginTime() {
+	public LocalTime getLoginTime() {
 		return loginTime;
 	}
-	public void setLoginTime(TimeZone loginTime) {
+	public void setLoginTime(LocalTime loginTime) {
 		this.loginTime = loginTime;
 	}
 	
 	@Column(name = "logout_time")
-	public TimeZone getLogoutTime() {
+	public LocalTime getLogoutTime() {
 		return logoutTime;
 	}
-	public void setLogoutTime(TimeZone logoutTime) {
+	public void setLogoutTime(LocalTime logoutTime) {
 		this.logoutTime = logoutTime;
 	}
 	
@@ -70,6 +74,20 @@ public class ShopAvailablity {
 	}
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+	@Column(name = "from_date")
+	public Date getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+	@Column(name = "to_date")
+	public Date getToDate() {
+		return toDate;
+	}
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
 	}
 	
 	
