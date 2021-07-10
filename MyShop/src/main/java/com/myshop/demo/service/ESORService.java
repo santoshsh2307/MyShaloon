@@ -11,6 +11,8 @@ public interface ESORService {
 	EmployeeShopOwnerRelation saveESOR(EmployeeShopOwnerRelation esor);
 
 	Optional<EmployeeShopOwnerRelation> findESORById(Long id);
+	
 	List<EmployeeShopOwnerRelation> findAll();
 
+	List<EmployeeShopOwnerRelation> getShopByEmpId(Long id);
 }
