@@ -85,4 +85,41 @@ public class ShopController {
 		}
 		return map;
 	
-}}
+	}
+	@GetMapping(value = "/getShopByShopName/{name}")
+	public HashMap<String, Object> getShopByShopName(@PathVariable ("name")String shopName) {
+		List<ShopDetails> data = sSer.findShopByShopName(shopName);
+		 HashMap<String, Object> map = new HashMap<>();
+			if (data!=null) {
+				map.put("code", "200");
+				map.put("content", data);
+			} else {
+				map.put("code", "201");
+				map.put("content", "no data");
+				
+				
+			}
+			return map;
+		
+		
+	}
+	@GetMapping(value = "/getShopByAddress/{address}")
+	public HashMap<String, Object> getShopByAddress(@PathVariable("address") String add) {
+		Optional<ShopDetails> data = sSer.findByAddress(add);
+		 HashMap<String, Object> map = new HashMap<>();
+			if (data!=null) {
+				map.put("code", "200");
+				map.put("content", data);
+			} else {
+				map.put("code", "201");
+				map.put("content", "no data");
+				
+				
+			}
+			return map;
+		
+		
+	}
+
+
+}
