@@ -88,5 +88,38 @@ public class AppointmentsController {
 	
 	
        }
+	
+	@GetMapping(value = "/getAppByAppData/{date}")
+  public HashMap<String, Object> getAppByAppData(@PathVariable ("date") String addDate) {
+	  List<Appointments> data = apSer.findAppByAppDate(new Date(addDate));
+	  HashMap<String,Object> map= new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+		}
+		return map;
+	
+}
+  @GetMapping(value = "/getAppByUserId/{id}")
+  public HashMap<String, Object> getAppByUserId(@PathVariable("id") Long id) {
+	 Appointments data= apSer.findAppByUserId(id);
+	 HashMap<String,Object> map= new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+		}
+		return map;
+	
+	
+}
+
 
 }
