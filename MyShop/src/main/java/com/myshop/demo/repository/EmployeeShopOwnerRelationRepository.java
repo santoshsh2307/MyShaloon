@@ -8,4 +8,6 @@ import com.myshop.demo.entity.EmployeeShopOwnerRelation;
 @Repository
 public interface EmployeeShopOwnerRelationRepository extends JpaRepository<EmployeeShopOwnerRelation, Long>{
 
+  List<EmployeeShopOwnerRelation> findAllByEmpId(Long id);
+
 }
