@@ -41,5 +41,20 @@ public class AppointmentServiceImpl implements AppointmentService {
 	
 		return appRepo.findAll();
 	}
+	
+	@Transactional
+	public List<Appointments> findAppByAppDate(Date appDate) {
+		List<Appointments> data = appRepo.findByAppDate(appDate);
+		// TODO Auto-generated method stub
+		return data;
+	}
+
+	@Transactional
+	public Appointments findAppByUserId(Long id) {
+		// TODO Auto-generated method stub
+		Appointments data = appRepo.findAppByUserId(id);
+		return data;
+	}
+
 
 }
