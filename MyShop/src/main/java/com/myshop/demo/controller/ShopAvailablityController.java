@@ -20,13 +20,58 @@ public class ShopAvailablityController {
 	@Autowired
 	ShopAvailabilityService saSer;
 	
+	@Autowired
+	AppointmentService appService;
+	
 	@PostMapping(value = "/saveShopAvailability")
-	public HashMap<String, Object> saveShopAvailability(ShopAvailablity sa) {
-		ShopAvailablity data = saSer.saveShopAvailability(sa);
+	public HashMap<String, Object> saveShopAvailability(@RequestBody ApponimentShopAvailalbilityDTO sa) {
+		ShopAvailablity sha = new ShopAvailablity();
+		if (sa.getShopId()!=null) {
+			sha.setCreatedDate(new Date());
+			sha.setFromDate(DateConversion.StringToDateConversionDBFields(sa.getFromDate()));
+			sha.setToDate(DateConversion.StringToDateConversionDBFields(sa.getToDate()));
+			sha.setLoginTime(sa.getLoginTime());
+			sha.setLogoutTime(sa.getLogoutTime());
+			sha.setShopId(sa.getShopId());
+			sha.setStatus(true);
+			ShopAvailablity data = saSer.saveShopAvailability(sha);
+			
+		}
+		
+		
+		//add appointment time and date to app table
+		Date fromDate = DateConversion.StringToDateConversionDBFields(sa.getFromDate());
+		Date toDate = DateConversion.StringToDateConversionDBFields(sa.getToDate());
+		while (!fromDate.after(toDate)) {
+			 LocalTime from = LocalTime.parse(sa.getLoginTime().toString());
+		   	 LocalTime to = LocalTime.parse(sa.getLogoutTime().toString());
+			   	  while(!from.isAfter(to)) {
+						//System.out.println(from);
+			   		  	for (int i = 0; i < sa.getNoOfSheet(); i++) {
+				   		  	Appointments app = new Appointments();
+				   		  	app.setAppDate(fromDate);
+				   		  	app.setAppTime(from);
+				   		  	app.setBookingStatusId(1l);
+				   		  	if (sha.getShopId()==null) {
+				   		  		app.setShopId(sa.getShopId());
+							}else {
+								app.setShopId(sha.getShopId());
+							}
+				   		  	app.setStatus(true);
+			   		  		
+				   		  	appService.saveAppointment(app);
+						}
+						from =from.plusMinutes(30);
+					}
+			
+				long ltime=fromDate.getTime()+1*24*60*60*1000;
+				fromDate=new Date(ltime); 
+            }
+		//end adding appointment to table
 		HashMap<String, Object> map = new HashMap<>();
-		if (data!=null) {
+		if (sa.getShopId()!=null) {
 			map.put("code", "200");
-			map.put("content", data);
+			map.put("content", "success");
 		} else {
 			map.put("code", "201");
 			map.put("content", "201");
