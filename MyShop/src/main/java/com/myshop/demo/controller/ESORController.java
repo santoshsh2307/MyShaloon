@@ -70,7 +70,7 @@ public class ESORController {
 	}
 	return map;
 
-}
+	}
 	 @PutMapping(value = "/updateESOR")
 		public HashMap<String, Object> updateESOR(@RequestBody EmployeeShopOwnerRelation esor ) {
 			EmployeeShopOwnerRelation updatedata = esorSer.saveESOR(esor);
@@ -84,4 +84,21 @@ public class ESORController {
 				
 			}
 			return map;
-}}
+	}
+	@GetMapping(value = "/getShopByEmpId/{id}")
+	 public HashMap<String, Object> getShopByEmpId(@PathVariable ("id")Long id) {
+		List<EmployeeShopOwnerRelation> data = esorSer.getShopByEmpId(id);
+		HashMap<String, Object> map = new HashMap<>();
+		if (data!=null) {
+			map.put("code", "200");
+			map.put("content", data);
+			
+		} else {
+			map.put("code", "201");
+			map.put("content", "no data");
+			
+		}
+		return map;
+	}
+
+}
