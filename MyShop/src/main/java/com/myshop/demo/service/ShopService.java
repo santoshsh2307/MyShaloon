@@ -10,6 +10,11 @@ public interface ShopService  {
 	ShopDetails saveShop(ShopDetails s);
 
 	ShopDetails findShopById(Long id);
+	
 	List<ShopDetails> findAll();
+
+	List<ShopDetails> findShopByShopName(String shopName);
+
+	Optional<ShopDetails> findByAddress(String add);
 
 }
