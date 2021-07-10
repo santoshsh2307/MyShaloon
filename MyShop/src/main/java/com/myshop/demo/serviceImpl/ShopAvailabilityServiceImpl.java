@@ -35,6 +35,7 @@ public class ShopAvailabilityServiceImpl implements ShopAvailabilityService {
 		Optional<ShopAvailablity> data = saRepo.findById(id);
 		return data.get();
 	}
+	@Transactional
 	public List<ShopAvailablity> findAll() {
 		// TODO Auto-generated method stub
 
