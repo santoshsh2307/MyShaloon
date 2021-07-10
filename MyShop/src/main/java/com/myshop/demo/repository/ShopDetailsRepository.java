@@ -10,4 +10,10 @@ public interface ShopDetailsRepository extends JpaRepository<ShopDetails, Long>{
 
 	ShopDetails findShopById(Long id);
 
+	List<ShopDetails> findByShopName(String shopName);
+
+
+	Optional<ShopDetails> findByAddress(String add);
+
+
 }
