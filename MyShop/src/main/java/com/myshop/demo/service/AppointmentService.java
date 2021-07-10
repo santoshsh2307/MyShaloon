@@ -9,6 +9,10 @@ public interface AppointmentService {
 	Appointments saveAppointment(Appointments a);
 
 	Optional<Appointments> findAppointmentById(Long id);
+	
 	List<Appointments> findAll();
 
+	List<Appointments> findAppByAppDate(Date addDate);
+
+	Appointments findAppByUserId(Long id);
 }
