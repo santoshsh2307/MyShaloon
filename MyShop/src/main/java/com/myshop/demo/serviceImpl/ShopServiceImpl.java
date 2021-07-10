@@ -35,9 +35,25 @@ public class ShopServiceImpl implements ShopService{
 		Optional<ShopDetails> data = sRepo.findById(id);
 		return data.get();
 	}
+	@Transactional
 	public List<ShopDetails> findAll() {
 		// TODO Auto-generated method stub
 		return sRepo.findAll();
 	}
+	
+	@Transactional
+	public List<ShopDetails> findShopByShopName(String shopName) {
+		// TODO Auto-generated method stub
+		  List<ShopDetails> data = sRepo.findByShopName(shopName);
+		return data;
+	}
+
+	@Transactional
+	public Optional<ShopDetails> findByAddress(String add) {
+		// TODO Auto-generated method stub
+		Optional<ShopDetails> data  = sRepo.findByAddress(add);
+		return data;
+	}
+
 
 }
