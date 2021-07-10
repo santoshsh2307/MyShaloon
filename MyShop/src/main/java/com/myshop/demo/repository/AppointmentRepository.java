@@ -8,5 +8,9 @@ import com.myshop.demo.entity.Appointments;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointments, Long>{
 
+  List<Appointments> findByAppDate(Date appDate);
+
+	Appointments findAppByUserId(Long id);
+
 
 }
