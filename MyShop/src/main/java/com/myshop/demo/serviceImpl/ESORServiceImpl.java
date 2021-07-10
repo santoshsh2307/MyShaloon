@@ -35,9 +35,18 @@ public class ESORServiceImpl implements ESORService {
 		Optional<EmployeeShopOwnerRelation> data = esorRepo.findById(id);
 		return data;
 	}
+	@Transactional
 	public List<EmployeeShopOwnerRelation> findAll() {
 		// TODO Auto-generated method stub
 		return esorRepo.findAll();
 	}
+	
+	@Transactional
+	public List<EmployeeShopOwnerRelation> getShopByEmpId(Long id) {
+		// TODO Auto-generated method stub
+		 List<EmployeeShopOwnerRelation> data = esorRepo.findAllByEmpId(id);
+		return data;
+	}
+
 
 }
