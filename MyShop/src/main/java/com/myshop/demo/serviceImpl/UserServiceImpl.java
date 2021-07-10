@@ -63,6 +63,7 @@ public class UserServiceImpl implements UsersService {
 		Users data = uRepo.findByUserNameAndPassword(userName,password);
 		return data;
 	}
+	@Transactional
 	public List<Users> findAll() {
 		// TODO Auto-generated method stub
 		return uRepo.findAll();
